@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Poll</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% include "common.html" %}
+    <div class="container d-flex justify-content-center mt-3" >
+        <div class="card p-2 text-dark bg-info bg-opacity-25 shadow" style="width:50%;" >
+            <form method="post" action="{% url 'vote_poll' poll.id %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <div class="card-header card-title">
+                    <label class="form-label fw-bold">{{ poll.question }}</label>
+                    </div>
+                    <div class="card-body bg-light bg-gradient rounded">
+
+                    {% for choice in poll.choice_set.all %}
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio" name="choice" id="choice{{ choice.id }}" value="{{ choice.id }}">
+                            <label class="form-check-label" for="choice{{ choice.id }}">
+                                {{ choice.choice_text }}
+                            </label>
+                        </div>
+                        <hr></hr>
+                    {% endfor %}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info">Vote</button>
+            </form>
+            
+          </div>
+          
+    </div>
+
+    
+</body>
+</html>

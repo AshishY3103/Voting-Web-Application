@@ -1,0 +1,40 @@
+<!-----------------Header---------------->
+{% comment %} <nav class="navbar navbar-expand-lg  bg-primary bg-opacity-75">
+    <div class="container">
+        <a class="navbar-brand text-white fw-semibold ms-5" href="#">Voting App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link text-white{% if request.path == '/website/' %} fw-medium text-decoration-underline{% endif %}" href="/website/">Polls</a>
+            <a class="nav-link text-white{% if request.path == '/website/create poll/' %} fw-medium text-decoration-underline{% endif %}" href="/website/create poll">Create</a>
+            <a class="nav-link text-white{% if request.path == '/website/contact_us' %} fw-medium text-decoration-underline{% endif %}" href="/website/contact_us">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </nav> {% endcomment %}
+
+    <nav class="navbar navbar-expand-lg {% if request.path == '/accounts/login/' or request.path == '/login/' %}bg-primary{% elif request.path == '/create poll/' %}bg-info bg-opacity-50{% elif request.path == '/' %}bg-primary bg-opacity-50{% elif request.path == '/my polls/' %}bg-danger bg-opacity-50 {%else%}bg-info{% endif %} bg-opacity-75 sticky-top">
+      <div class="container">
+          <a class="navbar-brand text-white fw-semibold ms-5" href="#">Voting App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                  <a class="nav-link text-white{% if request.path == '/' %} fw-medium text-decoration-underline{% endif %}" href="/">Polls</a>
+                  <a class="nav-link text-white{% if request.path == '/create poll/' %} fw-medium text-decoration-underline{% endif %}" href="/create poll">Create</a>
+                  <a class="nav-link text-white{% if request.path == '/my polls/' %} fw-medium text-decoration-underline{% endif %}" href="/my polls">My Polls Us</a>
+              </div>
+          </div>
+          <div class="navbar-nav ms-auto">
+              {% if user.is_authenticated %}
+                  <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+              {% endif %}
+          </div>
+      </div>
+  </nav>
+  
+
+    <!-----------------Header---------------->

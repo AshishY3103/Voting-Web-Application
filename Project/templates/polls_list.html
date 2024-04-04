@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Polls List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet" >
+</head>
+<body>
+    {% include "common.html" %}
+    <div class="container d-flex justify-content-center mt-3" >
+        <div class="card p-2 text-dark bg-primary-subtle shadow" style="width:50%;" >
+            <h5 class="card-header card-title  ">
+              Poll Questions
+            </h5>
+            <div class="card-body bg-light bg-gradient rounded">
+              <ul class="list-group ">
+              {% comment %} {% for poll in polls %}
+              <li class=" btn btn-light btn-left mt-1 "  >{{ poll.question }} <span class="badge rounded-pill text-bg-dark float-end p-2">{{ poll.total_votes }}</span></li>
+              {% endfor %} {% endcomment %}
+              {% for poll in polls %}
+                  <li class="btn btn-light btn-left mt-1">
+                      <a href="{% url 'vote_poll' poll.id %}" class="text-decoration-none text-dark">{{ poll.question }}</a>
+                      <span class="badge rounded-pill text-bg-dark float-end p-2">{{ poll.total_votes }}</span>
+                  </li>
+                  <hr></hr>
+              {% endfor %}
+              
+            </ul>
+            
+            </div>
+            <div> Total Polls : {{ polls|length }}</div>
+          </div>
+          
+    </div>
+
+    
+</body>
+</html>
